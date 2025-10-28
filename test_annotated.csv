@@ -1,0 +1,4 @@
+metadata_id,file_list,temporal_segment_start,temporal_segment_end,metadata
+1_DvDGPd7L,test.mp4,0.10642,7.16892,"{\"TEMPORAL_SEGMENTS\": \"Shoplifting\"}"
+1_AdeQvXgG,test.mp4,7.419,14.04392,"{\"TEMPORAL_SEGMENTS\": \"Normal\"}"
+1_kOgmpXhH,test.mp4,14.044,20.02309,"{\"TEMPORAL_SEGMENTS\": \"Shoplifting\"}"
