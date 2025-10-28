@@ -2,11 +2,11 @@
 
 This repo implements the inference pipeline for Shopformer (https://arxiv.org/pdf/2504.19970), a transformer-based model for detecting shoplifting via human pose. It supports optimized inference, batching, and optional evaluation.
 
-🔗 GitHub: https://github.com/amalmathews/shopformer
+ GitHub: https://github.com/amalmathews/shopformer
 
 ------------------------------------------------------------
 
-📦 SETUP
+SETUP
 
 git clone https://github.com/amalmathews/shopformer.git
 cd shopformer
@@ -14,7 +14,7 @@ pip install -r requirements.txt
 
 ------------------------------------------------------------
 
-🚀 RUN INFERENCE
+RUN INFERENCE
 
 Basic Inference (no metrics):
 python run_infer2.py --video_path <video.mp4>
@@ -24,7 +24,7 @@ python run_infer2.py  <video.mp4>  <labels.csv>
 
 ------------------------------------------------------------
 
-📂 OUTPUT FILES
+OUTPUT FILES
 
 - outputs/anomaly_only_video.mp4         → shoplifting-only frames
 - outputs/normal_only_video.mp4          → normal behavior frames
@@ -181,16 +181,16 @@ Frame 140: Score = 0.5192 → Shoplifting
 
 ✅ Saved 67 anomalous frames → outputs/anomaly_only_video.mp4
 ✅ Saved 74 normal frames → outputs/normal_only_video.mp4
-📊 Anomaly Ratio: 67/141 = 47.52%
+Anomaly Ratio: 67/141 = 47.52%
 
-📋 Evaluation Metrics:
+ Evaluation Metrics:
 Precision: 0.5373
 Recall:    0.3830
 F1 Score:  0.4472
 ```
 ------------------------------------------------------------
 
-⚙️ MODEL & APPROACH
+MODEL & APPROACH
 
 - Uses YOLOv8-pose for keypoint extraction
 - Shopformer is a transformer autoencoder trained in unsupervised fashion
@@ -199,14 +199,14 @@ F1 Score:  0.4472
 
 ------------------------------------------------------------
 
-📝 GROUND TRUTH CSV FORMAT (OPTIONAL)
+GROUND TRUTH CSV FORMAT (OPTIONAL)
 
 temporal_segment_start,temporal_segment_end,metadata
 0.0,6.2,"{\"TEMPORAL_SEGMENTS\": \"Shoplifting\"}"
 
 ------------------------------------------------------------
 
-📌 NOTES
+ NOTES
 
 - Ground truth is optional — use it to get evaluation metrics
 - Code includes both batched and non-batched pose extraction (toggle in script)
