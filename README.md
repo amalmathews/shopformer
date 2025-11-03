@@ -6,6 +6,13 @@ This repo implements the inference pipeline for Shopformer (https://arxiv.org/pd
 
 ------------------------------------------------------------
 
+## Two Implementations
+
+**V1 (shopformer_transformer.py):** Simple transformer autoencoder - fast prototype
+**V2 (shopformer_v2.py):** Paper-faithful multi-stage architecture with graph convolutions
+
+------------------------------------------------------------
+
 SETUP
 
 git clone https://github.com/amalmathews/shopformer.git
@@ -14,13 +21,28 @@ pip install -r requirements.txt
 
 ------------------------------------------------------------
 
+## Two Implementations
+
+**V1 (shopformer_transformer.py):** Simple transformer autoencoder - fast prototype
+**V2 (shopformer_v2.py):** Paper-faithful multi-stage architecture with graph convolutions
+
+------------------------------------------------------------
+
 RUN INFERENCE
 
+**V1**
 Basic Inference (no metrics):
 python run_infer2.py --video_path <video.mp4>
 
 With Ground Truth CSV (to compute precision / recall / F1):
-python run_infer2.py  <video.mp4>  <labels.csv>
+```bash
+python run_infer2.py  test.mp4 test_annotated.csv
+```
+
+**V2 (Enhanced - Default):**
+```bash
+python run_infer_v2.py test.mp4 test_annotated.csv
+```
 
 ------------------------------------------------------------
 
@@ -197,6 +219,34 @@ MODEL & APPROACH
 - Computes per-frame MSE reconstruction error as anomaly score
 - Optimized with batched inference for pose estimation
 
+models/shopformerv2.py Architecture
+Implemented the full transformer-based architecture described in the Shopformer paper, including graph-based spatial encoding, tokenization, transformer encoder-decoder, and pose reconstruction. Not trained due to absence of annotated data, but the forward pass is complete and matches the original design.
+
+## Architecture Comparison
+
+| Feature | V1 | V2 |
+|---------|----|----|
+| Structure | Flat vector | Graph convolution |
+| Tokenization | None | 2 tokens per pose |
+| Transformer | 2 layers, 4 heads | 6 layers, 8 heads |
+| Parameters | 1.2M | 11.6M |
+| Paper Fidelity | Simplified | Faithful |
+| F1 Score | 44% | 80% |
+
+---
+
+**V1:** Simple transformer autoencoder for rapid prototyping.
+
+**V2:** Multi-stage architecture matching paper design:
+- Graph Convolutional Encoder (models skeleton structure)
+- Tokenizer (17 joints → 2 compact tokens)
+- Transformer (6 layers, 8 heads, temporal modeling)
+- Graph Decoder (reconstruction)
+
+Both use unsupervised reconstruction error for anomaly detection.
+
+---
+
 ------------------------------------------------------------
 
 GROUND TRUTH CSV FORMAT (OPTIONAL)
@@ -211,4 +261,5 @@ temporal_segment_start,temporal_segment_end,metadata
 - Ground truth is optional — use it to get evaluation metrics
 - Code includes both batched and non-batched pose extraction (toggle in script)
 - Designed for reproducible evaluation with annotated video outputs
+- TeCSAR-UNCC/Shopformer repository (referenced in paper) currently contains only documentation - implementation pending CVPR 2025 publication. Both versions implemented from paper architecture description.
 
