@@ -8,8 +8,8 @@ This repo implements the inference pipeline for Shopformer (https://arxiv.org/pd
 
 ## Two Implementations
 
-**V1 (shopformer_transformer.py):** Simple transformer autoencoder - fast prototype
-**V2 (shopformer_v2.py):** Paper-faithful multi-stage architecture with graph convolutions
+- **V1 (shopformer_transformer.py):** Simple transformer autoencoder - fast prototype
+- **V2 (shopformer_v2.py):** Paper-faithful multi-stage architecture with graph convolutions
 
 ------------------------------------------------------------
 
@@ -18,13 +18,6 @@ SETUP
 git clone https://github.com/amalmathews/shopformer.git
 cd shopformer
 pip install -r requirements.txt
-
-------------------------------------------------------------
-
-## Two Implementations
-
-**V1 (shopformer_transformer.py):** Simple transformer autoencoder - fast prototype
-**V2 (shopformer_v2.py):** Paper-faithful multi-stage architecture with graph convolutions
 
 ------------------------------------------------------------
 
